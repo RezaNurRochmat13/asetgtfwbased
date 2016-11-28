@@ -1,0 +1,59 @@
+<!-- patTemplate:tmpl name="content" -->
+</h2>
+<br/>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Insert Hardware</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form method="POST" action="{URL_ACTION}" class="xhr_form std_form" id="frmInput" name="frmInput">
+                        <div class="form-group">
+                            <label>Kode Aset</label>
+                            <td><input type="text" name="kode_aset" class="form-control" value="{KODE_ASET}" size="30" />
+                            </td>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Aset</label>
+                            <td><input type="text" name="nama_aset" class="form-control" value="{NAMA_ASET}" size="30" />
+                            </td>
+                        </div>
+                        <div class="form-group">
+                            <label>Pic Aset</label>
+                            <td><input type="text" name="pic" class="form-control" value="{PIC}" size="30" /></td>
+                        </div>
+                        <div class="form-group">
+                            <label>Deskripsi aset</label>
+                            <td><input type="text" name="deskripsi_aset" class="form-control" value="{DESKRIPSI_ASET}" size="30" /></td>
+                        </div>
+                        <div class="form-group">
+                            <label>Status Aset</label> 
+                            <select>
+                                <option value="{NAMA_STATUS_ASET}">Baik</option>
+                                <option value="{NAMA_STATUS_ASET}">Sedang</option>
+                                <option value="{NAMA_STATUS_ASET}">Rusak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori Aset</label>
+                            <select>
+                                <option value="{NAMA_KATEGORI_ASET}">Hardware</option>
+                                <option value="{NAMA_KATEGORI_ASET}">Software</option>
+                                <option value="{NAMA_KATEGORI_ASET}">Kendaraan</option>
+                                <option value="{NAMA_KATEGORI_ASET}">Bangunan</option>
+                                <option value="{NAMA_KATEGORI_ASET}">Peralatan Kantor</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit" name="btnsimpan">Simpan</button>
+						<a href="{URL_CANCEL}" class="xhr dest_subcontent-element btn btn-default">Batal</a>
+                    </form>                      
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- /patTemplate:tmpl -->

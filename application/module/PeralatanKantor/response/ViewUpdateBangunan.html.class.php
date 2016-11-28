@@ -1,0 +1,45 @@
+<?php
+/**
+* @copyright Copyright (c) 2014, PT Gamatechno Indonesia
+* @license http://gtfw.gamatechno.com/#license
+*/
+
+
+require_once Configuration::Instance()->GetValue('application', 'docroot').'module/Bangunan/business/mysqlt/Bangunan.class.php';
+
+class ViewUpdateKendaraan extends HtmlResponse {
+	function TemplateModule() {
+		$this->SetTemplateBasedir(Configuration::Instance()->GetValue('application', 'docroot').'module/Kendaraan/template');
+		$this->SetTemplateFile('view_update_bangunan.html');
+	}
+	
+	function ProcessRequest() {
+		$ObjBangunan = new Bangunan();
+		$kodeAset = Dispatcher::Instance()->Encrypt($_GET['kodeAset']->Raw());
+		if(!empty($kodeAset)) {
+			$return['dataBangunan'] = $ObjBangunan->GetBangunanById($kodeAset);
+		}
+		
+			$return['KODE_ASET'] = $kodeAset;
+			//echo "<pre>";print_r($return);echo "</pre>";
+			return $return;
+	}
+	
+	function ParseTemplate ($data = NULL) {
+	
+		if(!empty($data['KODE_ASET'])) {
+			$this->mrTemplate->AddVar('content', 'URL_ACTION', Dispatcher::Instance()->GetUrl('Bangunan', 'UpdateBangunan', 'do', 'json'));
+			$this->mrTemplate->AddVar('content', 'NAMA_ASET', $data['dataBangunan'][0]['NAMA_ASET']);
+			$this->mrTemplate->AddVar('content', 'PIC', $data['dataBangunan'][0]['PIC']);
+			$this->mrTemplate->AddVar('content', 'DESKRIPSI_ASET', $data['dataBangunan'][0]['DESKRIPSI_ASET']);
+			$this->mrTemplate->AddVar('content', 'NAMA_STATUS_ASET', $data['dataBangunan'][0]['NAMA_STATUS_ASET']);
+			$this->mrTemplate->AddVar('content', 'NAMA_KATEGORI_ASET', $data['dataBangunan'][0]['DESKRIPSI_ASET']);
+			$this->mrTemplate->AddVar('content', 'KODE_ASET', $data['KODE_ASET']);
+			$this->mrTemplate->addVar('content', 'URL_CANCEL', Dispatcher::Instance()->GetUrl(Dispatcher::Instance()->mModule, 'ListBangunan', 'view', 'html'));
+		} else {
+			$this->mrTemplate->AddVar('content', 'URL_ACTION', Dispatcher::Instance()->GetUrl('Bangunan', 'ListBangunan', 'do', 'json'));
+		}
+		
+	}
+}
+?>
